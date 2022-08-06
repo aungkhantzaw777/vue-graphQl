@@ -1,0 +1,40 @@
+{
+    "menus": [
+        {
+            "icon": "el-icon-monitor",
+            "label": "home"
+        }, 
+        {
+            "icon": "el-icon-time",
+            "label": "time"
+        },
+        {
+            "icon": "el-icon-suitcase-1",
+            "label": "tasks"
+        },
+        {
+            "icon": "el-icon-timer",
+            "label": "tasks"
+        },
+        {
+            "icon": "el-icon-user",
+            "label": "user"
+        },
+        {
+            "icon": "el-icon-refresh",
+            "label": "refresh"
+        },
+        {
+            "icon": "el-icon-bell",
+            "label": "notification"
+        },
+        {
+            "icon": "el-icon-bank-card",
+            "label": "notification"
+        },
+        {
+            "icon": "el-icon-chat-dot-square",
+            "label": "notification"
+        }
+    ]
+}
