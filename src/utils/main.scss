@@ -1,0 +1,24 @@
+/* theme color */
+$--color-primary: #30E398;
+
+/* icon font path, required */
+// $--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+// @import "~element-ui/packages/theme-chalk/src/index";
+
+.side-menu {
+    width: 400px;
+    display: flex;
+}
+.secondary-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 40px;
+}
+body {
+    background-color: #f2f2f2;
+}
+.w-full {
+    width: 100%;
+}

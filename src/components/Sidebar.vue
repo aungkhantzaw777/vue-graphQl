@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen">
+  
     <el-menu
       :default-active="0"
       class="menu"
@@ -10,12 +10,11 @@
     <div class="logo-wrap">
       <img src="@/assets/betterHR.png" class="logo" alt="logo" />
     </div>
-      <el-menu-item v-for="(menu, i) in menus" :key="i" :index="i">
+      <el-menu-item v-for="menu in menus" :key="menu.label" :index="menu.label">
         <i :class="menu.icon"></i>
-        <span slot="title">{{ menu.label }}</span>
       </el-menu-item>
     </el-menu>
-  </div>
+  
 </template>
 
 <style>
