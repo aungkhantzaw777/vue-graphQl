@@ -17,8 +17,11 @@ $--color-primary: #30E398;
     padding-left: 40px;
 }
 body {
-    background-color: #f2f2f2;
+    background-color: #f2f2f2 !important;
 }
 .w-full {
     width: 100%;
+}
+.primary-text {
+    color: #30E398;
 }
