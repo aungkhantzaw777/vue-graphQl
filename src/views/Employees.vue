@@ -18,14 +18,20 @@
         </div>
       </el-aside>
       <el-container class="main px-3 py-4">
-        <div class="d-flex flex-row align-items-center">
-          <i class="el-icon-back primary-text back-icon"></i>
-          <span class="ml-3 employee-directory-heading"
-            >Employee Directory</span
-          >
-          <div class="action-icons">
-            <i class="el-icon-search"></i>
-            <i class="el-icon-edit"></i>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex flex-row align-items-center">
+            <i class="el-icon-back primary-text back-icon"></i>
+            <span class="ml-3 employee-directory-heading"
+              >Employee Directory</span
+            >
+            <div class="action-icons">
+              <FilterIcon class="a-icon" style="height: 24px" />
+              <SearchIcon class="a-icon right-border" style="height: 24px" />
+              <EditIcon class="a-icon" style="height: 24px" />
+            </div>
+          </div>
+          <div>
+            <el-button type="primary">Create Employee</el-button>
           </div>
         </div>
         <div>
@@ -106,6 +112,19 @@
             >
             </el-table-column>
           </el-table>
+          <div class="block d-flex justify-content-end mt-3">
+            <el-pagination
+              popper-class="paginate"
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page.sync="currentPage2"
+              :page-sizes="[100, 200, 300, 400]"
+              :page-size="100"
+              layout="sizes, prev, pager, next, jumper"
+              :total="1000"
+            >
+            </el-pagination>
+          </div>
         </div>
       </el-container>
     </el-container>
@@ -115,6 +134,9 @@
 <script>
 import Sidebar from "../components/Sidebar.vue";
 import db from "../static/db.json";
+import FilterIcon from "../components/icons/FilterIcon.vue";
+import SearchIcon from "../components/icons/Search.vue";
+import EditIcon from "../components/icons/Edit.vue";
 
 export default {
   name: "EmployeePage",
@@ -162,21 +184,20 @@ export default {
       selectedDeaprtment: {
         id: "",
       },
+
+      currentPage1: 5,
+      currentPage2: 5,
+      currentPage3: 5,
+      currentPage4: 4,
     };
   },
   components: {
     Sidebar,
+    FilterIcon,
+    EditIcon,
+    SearchIcon,
   },
   methods: {
-    toggleSelection(rows) {
-      if (rows) {
-        rows.forEach((row) => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
-      } else {
-        this.$refs.multipleTable.clearSelection();
-      }
-    },
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
@@ -200,6 +221,12 @@ export default {
     },
     escSelect() {
       this.selectedDeaprtment.id = "";
+    },
+    handleSizeChange(val) {
+      console.log(`${val} items per page`);
+    },
+    handleCurrentChange(val) {
+      console.log(`current page: ${val}`);
     },
   },
 };
@@ -235,11 +262,24 @@ export default {
 }
 .employee-directory-heading {
   font-size: 24px;
+  line-height: 24px;
 }
 .action-icons {
   margin-left: 10px;
 }
 .action-icons > i {
-  font-weight: 900;
+  font-weight: 700;
+  font-size: 24px;
+  color: grey;
+}
+.right-border {
+  border-right: 1px solid #f2f2f2;
+}
+.a-icon {
+  margin-left: 10px;
+  padding-right: 5px;
+}
+.el-pager li {
+  border: 1px solid #f2f2f2 ;
 }
 </style>

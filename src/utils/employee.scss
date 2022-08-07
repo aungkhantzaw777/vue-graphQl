@@ -1,0 +1,43 @@
+
+.header {
+  font-weight: 400;
+}
+.menu-list {
+  padding: 10px 0px;
+  width: 100%;
+}
+.menu-list a {
+  color: #7d7d7d;
+  text-decoration: none;
+}
+.menu-list .active {
+  color: #30e398 !important;
+}
+.main {
+  flex-direction: column;
+  background: #fff;
+}
+.employee-table {
+  border-bottom: 0px;
+}
+.back-icon {
+  font-size: 25px;
+  font-weight: 900;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.employee-directory-heading {
+  font-size: 24px;
+  line-height: 24px;
+}
+.action-icons {
+  margin-left: 10px;
+}
+.action-icons > i {
+  font-weight: 700;
+  font-size: 24px;
+  color: grey;
+}
+.right-border {
+  border-right: 1px solid #f2f2f2;
+}
