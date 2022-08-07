@@ -137,6 +137,7 @@ import db from "../static/db.json";
 import FilterIcon from "../components/icons/FilterIcon.vue";
 import SearchIcon from "../components/icons/Search.vue";
 import EditIcon from "../components/icons/Edit.vue";
+import gql from "graphql-tag";
 
 export default {
   name: "EmployeePage",
@@ -190,6 +191,18 @@ export default {
       currentPage3: 5,
       currentPage4: 4,
     };
+  },
+  apollo: {
+    // Simple query that will update the 'hello' vue property
+    hello: gql`
+      {
+        employees {
+          data {
+            Email
+          }
+        }
+      }
+    `,
   },
   components: {
     Sidebar,
@@ -280,6 +293,6 @@ export default {
   padding-right: 5px;
 }
 .el-pager li {
-  border: 1px solid #f2f2f2 ;
+  border: 1px solid #f2f2f2;
 }
 </style>

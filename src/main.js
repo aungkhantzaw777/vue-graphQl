@@ -11,6 +11,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHatWizard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import locale from 'element-ui/lib/locale/lang/en'
+import { createProvider } from './vue-apollo'
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
@@ -23,5 +26,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 new Vue({
   router,
+  apolloProvider: createProvider(),
   render: h => h(App)
 }).$mount('#app')
