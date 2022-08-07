@@ -35,9 +35,12 @@
           </div>
         </div>
         <div>
+          <div v-if="$apollo.loading">Loading...</div>
+
           <el-table
             class="employee-table"
-            :data="tableData"
+            :data="employees.data"
+            v-else
             style="width: 100%"
           >
             <el-table-column type="selection" width="55"> </el-table-column>
@@ -63,9 +66,9 @@
                 >
                 <el-select
                   v-show="selectedDeaprtment.id === scope.row.id"
-                  v-model="scope.row.Department"
+                  v-model="selectedDeaprtment.val"
                   @blur="escSelect"
-                  @change="selectedDeaprtment.id = ''"
+                  @change="val => handleDepartment(scope.row.id,val)"
                   filterable
                   placeholder="Select"
                 >
@@ -114,14 +117,15 @@
           </el-table>
           <div class="block d-flex justify-content-end mt-3">
             <el-pagination
-              popper-class="paginate"
+              v-if="!$apollo.loading"
+              class="paginate"
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
               :current-page.sync="currentPage2"
-              :page-sizes="[100, 200, 300, 400]"
+              :page-sizes="[50, 100, 300, 400]"
               :page-size="100"
               layout="sizes, prev, pager, next, jumper"
-              :total="1000"
+              :total="employees.paginatorInfo.total"
             >
             </el-pagination>
           </div>
@@ -184,26 +188,52 @@ export default {
       ],
       selectedDeaprtment: {
         id: "",
+        val:""
       },
+      
 
       currentPage1: 5,
       currentPage2: 5,
       currentPage3: 5,
       currentPage4: 4,
+      employeeData: null,
     };
   },
   apollo: {
-    // Simple query that will update the 'hello' vue property
-    hello: gql`
-      {
-        employees {
-          data {
-            Email
+    employees: {
+      query: gql`
+        query {
+          employees(first: 50) {
+            paginatorInfo {
+              total
+              currentPage
+              lastPage
+              perPage
+              count
+              hasMorePages
+            }
+            data {
+              id
+              Email
+              Location
+              Employees
+              Phone
+              Department
+              EmployeeCode
+              CustomTags
+              Positions
+              NRC
+              ManagerPosition
+              JoinnedDate
+              TerminateDate
+            }
           }
         }
-      }
-    `,
+      `,
+      update: (data) => data.employees,
+    },
   },
+
   components: {
     Sidebar,
     FilterIcon,
@@ -214,25 +244,48 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
+    
     changeDepartment(id) {
       this.counter++;
 
       if (this.counter == 1) {
         this.timer = setTimeout(() => {
           this.counter = 0;
-          // alert('double click'+id)
-          // window.location.href = 'p/'+ postId;
         }, 300);
 
         return;
       }
 
       clearTimeout(this.timer);
-      // alert('this is real click'+id)
       this.selectedDeaprtment.id = id;
       this.counter = 0;
     },
     escSelect() {
+      this.selectedDeaprtment.id = "";
+    },
+    handleDepartment(id, val) {
+      console.log(val)
+      this.$apollo
+        .mutate({
+          mutation: gql`
+           mutation updateEmployeeDepartment($id: ID!, $department: String!){
+            updateEmployeeDepartment(id: $id, Department: $department) {
+                id
+                Department
+              }
+          }
+        `,
+          variables: {
+            id: id,
+            department: val
+          },
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
       this.selectedDeaprtment.id = "";
     },
     handleSizeChange(val) {
