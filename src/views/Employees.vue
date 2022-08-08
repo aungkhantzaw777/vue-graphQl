@@ -26,12 +26,13 @@
             >
             <div class="action-icons">
               <FilterIcon class="a-icon" style="height: 24px" />
-              <SearchIcon class="a-icon right-border" style="height: 24px" />
-              <EditIcon class="a-icon" style="height: 24px" />
+              <SearchIcon class="a-icon " style="height: 24px;" />
+              <EditIcon v-show="multipleSelection.length > 0" class="a-icon pl-3 left-border" style="height: 24px;padding-left:5px" />
             </div>
           </div>
           <div>
             <el-button type="primary">Create Employee</el-button>
+            <ThreeDot class="a-icon" style="height:24px" />
           </div>
         </div>
         <div>
@@ -40,16 +41,26 @@
           <el-table
             class="employee-table"
             :data="employees"
+            ref="employeeTable"
+            @selection-change="handleSelectionChange"
+            :row-class-name="tableRowClassName"
             v-else
             style="width: 100%"
           >
             <el-table-column type="selection" width="55"> </el-table-column>
-            <el-table-column
-              fixed
-              prop="Employees"
-              label="Employees"
-              width="150"
-            >
+            <el-table-column fixed label="Employees" width="200">
+              <!-- prop="Employees" -->
+              <template slot-scope="scope">
+                <img
+                  class="avatar mr-2"
+                  :src="`https://source.unsplash.com/random/200x200?sig=${scope.row.id}`"
+                  alt="avatar"
+                /><span
+                  class="pl-3 employee-text font-bold"
+                  style="padding-left: 8px"
+                  >{{ scope.row.Employees }}</span
+                >
+              </template>
             </el-table-column>
             <el-table-column prop="Location" label="Location" width="120">
             </el-table-column>
@@ -68,7 +79,7 @@
                   v-show="selectedDeaprtment.id === scope.row.id"
                   v-model="selectedDeaprtment.val"
                   @blur="escSelect"
-                  @change="val => handleDepartment(scope.row.id,val)"
+                  @change="(val) => handleDepartment(scope.row.id, val)"
                   filterable
                   placeholder="Select"
                 >
@@ -116,18 +127,15 @@
             </el-table-column>
           </el-table>
           <div class="block d-flex justify-content-end mt-3">
-            <!-- <el-pagination
-              v-if="!$apollo.loading"
-              class="paginate"
-              @size-change="handleSizeChange"
-              @current-change="handleCurrentChange"
-              :current-page.sync="currentPage2"
+            <el-pagination
+              background
+              layout="total, sizes, prev, pager, next, jumper"
               :page-sizes="[50, 100, 300, 400]"
               :page-size="100"
-              layout="sizes, prev, pager, next, jumper"
-              :total="employees.paginatorInfo.total"
+              :total="100"
             >
-            </el-pagination> -->
+            </el-pagination>
+            
           </div>
         </div>
       </el-container>
@@ -137,10 +145,10 @@
 
 <script>
 import Sidebar from "../components/Sidebar.vue";
-import db from "../static/db.json";
 import FilterIcon from "../components/icons/FilterIcon.vue";
 import SearchIcon from "../components/icons/Search.vue";
 import EditIcon from "../components/icons/Edit.vue";
+import ThreeDot from "../components/icons/ThreeDot.vue";
 import gql from "graphql-tag";
 
 export default {
@@ -153,7 +161,6 @@ export default {
         { label: "Reporting Lines" },
         { label: "Departments structures" },
       ],
-      tableData: db.employees,
       multipleSelection: [],
       counter: 0,
       options: [
@@ -188,9 +195,8 @@ export default {
       ],
       selectedDeaprtment: {
         id: "",
-        val:""
+        val: "",
       },
-      
 
       currentPage1: 5,
       currentPage2: 5,
@@ -221,7 +227,7 @@ export default {
           }
         }
       `,
-      update: (data) => data.employees
+      update: (data) => data.employees,
     },
   },
 
@@ -230,12 +236,13 @@ export default {
     FilterIcon,
     EditIcon,
     SearchIcon,
+    ThreeDot
   },
   methods: {
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
-    
+
     changeDepartment(id) {
       this.counter++;
 
@@ -255,20 +262,20 @@ export default {
       this.selectedDeaprtment.id = "";
     },
     handleDepartment(id, val) {
-      console.log(val)
+      console.log(val);
       this.$apollo
         .mutate({
           mutation: gql`
-           mutation updateEmployeeDepartment($id: ID!, $department: String!){
-            updateEmployeeDepartment(id: $id, department: $department) {
+            mutation updateEmployeeDepartment($id: ID!, $department: String!) {
+              updateEmployeeDepartment(id: $id, department: $department) {
                 id
                 Department
               }
-          }
-        `,
+            }
+          `,
           variables: {
             id: id,
-            department: val
+            department: val,
           },
         })
         .then((data) => {
@@ -285,11 +292,21 @@ export default {
     handleCurrentChange(val) {
       console.log(`current page: ${val}`);
     },
+    tableRowClassName({ row, rowIndex }) {
+      console.log(rowIndex)
+      console.log( row.id)
+
+      if (this.multipleSelection.find(v => parseInt(v.id) === parseInt(row.id))) {
+        console.log('condition')
+        return "success-row";
+      } 
+      return "";
+    },
   },
 };
 </script>
 
-<style scoped>
+<style >
 .header {
   font-weight: 400;
 }
@@ -307,6 +324,7 @@ export default {
 .main {
   flex-direction: column;
   background: #fff;
+  border-radius: 10px;
 }
 .employee-table {
   border-bottom: 0px;
@@ -332,11 +350,18 @@ export default {
 .right-border {
   border-right: 1px solid #f2f2f2;
 }
+.left-border {
+  border-left: 1px solid #f2f2f2;
+}
 .a-icon {
   margin-left: 10px;
   padding-right: 5px;
+  color: #757575;
 }
 .el-pager li {
   border: 1px solid #f2f2f2;
+}
+.el-table .success-row {
+    background: #f0f9eb !important;
 }
 </style>

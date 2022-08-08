@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    :default-active="0"
+    :default-active="`user`"
     class="menu"
     @open="handleOpen"
     @close="handleClose"
@@ -41,14 +41,19 @@
 
 <style>
 .menu {
-  background: #fcfcfc;
+  background: #E1E3E5;
   display: flex;
+  width: 70px;
 }
 .menu-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  width: 100%;
+}
+.is-active {
+  background: #fff !important;
 }
 .flex-1 {
   flex: 1;
