@@ -39,7 +39,7 @@
 
           <el-table
             class="employee-table"
-            :data="employees.data"
+            :data="employees"
             v-else
             style="width: 100%"
           >
@@ -116,7 +116,7 @@
             </el-table-column>
           </el-table>
           <div class="block d-flex justify-content-end mt-3">
-            <el-pagination
+            <!-- <el-pagination
               v-if="!$apollo.loading"
               class="paginate"
               @size-change="handleSizeChange"
@@ -127,7 +127,7 @@
               layout="sizes, prev, pager, next, jumper"
               :total="employees.paginatorInfo.total"
             >
-            </el-pagination>
+            </el-pagination> -->
           </div>
         </div>
       </el-container>
@@ -203,34 +203,25 @@ export default {
     employees: {
       query: gql`
         query {
-          employees(first: 50) {
-            paginatorInfo {
-              total
-              currentPage
-              lastPage
-              perPage
-              count
-              hasMorePages
-            }
-            data {
-              id
-              Email
-              Location
-              Employees
-              Phone
-              Department
-              EmployeeCode
-              CustomTags
-              Positions
-              NRC
-              ManagerPosition
-              JoinnedDate
-              TerminateDate
-            }
+          employees {
+            id
+            Employees
+            Email
+            Department
+            EmployeeCode
+            Location
+            CustomTags
+            NRC
+            JoinnedDate
+            TerminateDate
+            Positions
+            Manager
+            ManagerPosition
+            Phone
           }
         }
       `,
-      update: (data) => data.employees,
+      update: (data) => data.employees
     },
   },
 
@@ -269,7 +260,7 @@ export default {
         .mutate({
           mutation: gql`
            mutation updateEmployeeDepartment($id: ID!, $department: String!){
-            updateEmployeeDepartment(id: $id, Department: $department) {
+            updateEmployeeDepartment(id: $id, department: $department) {
                 id
                 Department
               }
