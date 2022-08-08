@@ -1,0 +1,170 @@
+{
+    "menus": [
+        {
+            "icon": "el-icon-monitor",
+            "label": "home"
+        }, 
+        {
+            "icon": "el-icon-time",
+            "label": "time"
+        },
+        {
+            "icon": "el-icon-suitcase-1",
+            "label": "tasks"
+        },
+        {
+            "icon": "el-icon-timer",
+            "label": "timer"
+        },
+        {
+            "icon": "el-icon-user",
+            "label": "user"
+        },
+        {
+            "icon": "el-icon-refresh",
+            "label": "refresh"
+        },
+        {
+            "icon": "el-icon-bell",
+            "label": "notification"
+        },
+        {
+            "icon": "el-icon-bank-card",
+            "label": "bank"
+        },
+        {
+            "icon": "el-icon-chat-dot-square",
+            "label": "chat"
+        }
+    ],
+    "employees" : [
+        {
+            "id": 1,
+            "Employees": "Ye min Htun",
+            "Location": "Yangon Office",
+            "Email": "yeminhtun@better.hr",
+            "Phone": "+95948342381",
+            "Department": "product dpt",
+            "EmployeeCode": "004-342",
+            "CustomTags": "Intern",
+            "Positions": "UX Designer",
+            "NRC": "12/PaBaTa(N)00700",
+            "Manager": "Myo Zaw Hein",
+            "ManagerPosition": "CEO",
+            "JoinnedDate": "12.2.2021",
+            "TerminateDate": "-"
+        },
+        {
+            "id": 2,
+            "Employees": "Ye min Htun",
+            "Location": "Yangon Office",
+            "Email": "yeminhtun@better.hr",
+            "Phone": "+95948342381",
+            "Department": "product dpt",
+            "EmployeeCode": "004-342",
+            "CustomTags": "Intern",
+            "Positions": "UX Designer",
+            "NRC": "12/PaBaTa(N)00700",
+            "Manager": "Myo Zaw Hein",
+            "ManagerPosition": "CEO",
+            "JoinnedDate": "12.2.2021",
+            "TerminateDate": "-"
+        },
+        {
+            "id": 3,
+            "Employees": "Ye min Htun",
+            "Location": "Yangon Office",
+            "Email": "yeminhtun@better.hr",
+            "Phone": "+95948342381",
+            "Department": "product dpt",
+            "EmployeeCode": "004-342",
+            "CustomTags": "Intern",
+            "Positions": "UX Designer",
+            "NRC": "12/PaBaTa(N)00700",
+            "Manager": "Myo Zaw Hein",
+            "ManagerPosition": "CEO",
+            "JoinnedDate": "12.2.2021",
+            "TerminateDate": "-"
+        },
+        {
+            "id": 4,
+            "Employees": "Ye min Htun",
+            "Location": "Yangon Office",
+            "Email": "yeminhtun@better.hr",
+            "Phone": "+95948342381",
+            "Department": "product dpt",
+            "EmployeeCode": "004-342",
+            "CustomTags": "Intern",
+            "Positions": "UX Designer",
+            "NRC": "12/PaBaTa(N)00700",
+            "Manager": "Myo Zaw Hein",
+            "ManagerPosition": "CEO",
+            "JoinnedDate": "12.2.2021",
+            "TerminateDate": "-"
+        },
+        {
+            "id": 5,
+            "Employees": "Ye min Htun",
+            "Location": "Yangon Office",
+            "Email": "yeminhtun@better.hr",
+            "Phone": "+95948342381",
+            "Department": "product dpt",
+            "EmployeeCode": "004-342",
+            "CustomTags": "Intern",
+            "Positions": "UX Designer",
+            "NRC": "12/PaBaTa(N)00700",
+            "Manager": "Myo Zaw Hein",
+            "ManagerPosition": "CEO",
+            "JoinnedDate": "12.2.2021",
+            "TerminateDate": "-"
+        },
+        {
+            "id": 6,
+            "Employees": "Ye min Htun",
+            "Location": "Yangon Office",
+            "Email": "yeminhtun@better.hr",
+            "Phone": "+95948342381",
+            "Department": "product dpt",
+            "EmployeeCode": "004-342",
+            "CustomTags": "Intern",
+            "Positions": "UX Designer",
+            "NRC": "12/PaBaTa(N)00700",
+            "Manager": "Myo Zaw Hein",
+            "ManagerPosition": "CEO",
+            "JoinnedDate": "12.2.2021",
+            "TerminateDate": "-"
+        },
+        {
+            "id": 7,
+            "Employees": "Ye min Htun",
+            "Location": "Yangon Office",
+            "Email": "yeminhtun@better.hr",
+            "Phone": "+95948342381",
+            "Department": "product dpt",
+            "EmployeeCode": "004-342",
+            "CustomTags": "Intern",
+            "Positions": "UX Designer",
+            "NRC": "12/PaBaTa(N)00700",
+            "Manager": "Myo Zaw Hein",
+            "ManagerPosition": "CEO",
+            "JoinnedDate": "12.2.2021",
+            "TerminateDate": "-"
+        },
+        {
+            "id": 8,
+            "Employees": "Ye min Htun",
+            "Location": "Yangon Office",
+            "Email": "yeminhtun@better.hr",
+            "Phone": "+95948342381",
+            "Department": "product dpt",
+            "EmployeeCode": "004-342",
+            "CustomTags": "Intern",
+            "Positions": "UX Designer",
+            "NRC": "12/PaBaTa(N)00700",
+            "Manager": "Myo Zaw Hein",
+            "ManagerPosition": "CEO",
+            "JoinnedDate": "12.2.2021",
+            "TerminateDate": "-"
+        }
+    ]
+}
