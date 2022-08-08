@@ -12,7 +12,11 @@
           <img src="@/assets/betterHR.png" class="logo" alt="logo" />
         </div>
         <div>
-          <el-menu-item v-for="menu in menus" :key="menu.label" :index="menu.label">
+          <el-menu-item
+            v-for="menu in menus"
+            :key="menu.label"
+            :index="menu.label"
+          >
             <i :class="menu.icon"></i>
           </el-menu-item>
           <el-menu-item>
@@ -20,8 +24,16 @@
           </el-menu-item>
         </div>
       </div>
-      <div class="flex-1 menu-bottom">
-        <span>avatar</span>
+      <div class="flex-1 d-flex align-items-center menu-bottom">
+        <el-menu-item>
+          <i class="el-icon-document-checked"></i>
+        </el-menu-item>
+        <el-menu-item>
+          <i class="el-icon-chat-square"></i>
+        </el-menu-item>
+        <div class="mb-2">
+          <img class="avatar" src="https://i.pravatar.cc/300" alt="avatar" />
+        </div>
       </div>
     </div>
   </el-menu>
@@ -34,10 +46,9 @@
 }
 .menu-wrap {
   display: flex;
-  display: inline-flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
+  min-height: 100vh;
 }
 .flex-1 {
   flex: 1;
