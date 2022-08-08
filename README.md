@@ -1,6 +1,15 @@
-# better-hr
+# Graph QL and vuejs
+
+### GraphQL server 
+```
+cd node
+npm i
+node server.js
+```
+
 
 ## Project setup
+project root directory
 ```
 npm install
 ```
@@ -20,5 +29,3 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
