@@ -52,7 +52,7 @@
               <!-- prop="Employees" -->
               <template slot-scope="scope">
                 <img
-                  class="avatar mr-2"
+                  class="sub-avatar mr-2"
                   :src="`https://source.unsplash.com/random/200x200?sig=${scope.row.id}`"
                   alt="avatar"
                 /><span
@@ -128,6 +128,7 @@
           </el-table>
           <div class="block d-flex justify-content-end mt-3">
             <el-pagination
+              v-if="!$apollo.loading"
               background
               layout="total, sizes, prev, pager, next, jumper"
               :page-sizes="[50, 100, 300, 400]"
@@ -173,8 +174,8 @@ export default {
           label: "Development",
         },
         {
-          value: "product",
-          label: "product",
+          value: "product dpt",
+          label: "product dpt",
         },
         {
           value: "Customer success",
@@ -294,10 +295,8 @@ export default {
     },
     tableRowClassName({ row, rowIndex }) {
       console.log(rowIndex)
-      console.log( row.id)
 
       if (this.multipleSelection.find(v => parseInt(v.id) === parseInt(row.id))) {
-        console.log('condition')
         return "success-row";
       } 
       return "";
